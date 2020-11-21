@@ -8,7 +8,7 @@ var startButton = document.querySelector('.start_btn');
 var domGroup = document.querySelector('.groupName');
 var doc = document.documentElement;
 var countdownstarted = false;
-var time = 7;
+var time = 60;
 var score;
 var scores = {0:0,1:0};
 var randomWords = [
@@ -64,7 +64,7 @@ function startCountdown(){
       myAudio.play();
     } 
     if (time === 0){
-      time = 7;
+      time = 60;
       countdownstarted = false;
       if (first_group === group_one){
         first_group = group_two;
