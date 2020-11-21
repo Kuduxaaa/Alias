@@ -120,6 +120,11 @@ failedButton.addEventListener('click', function(){
 });
 
 startButton.addEventListener('click', function(){
+  if (randomWords.length != 0){
+    var randomIndex = Math.floor(Math.random() * randomWords.length);
+    mStatus.innerText = randomWords[randomIndex];
+    randomWords.splice(randomIndex,1);
+  }
   openFullscreen();
   startButton.style.display = "none";
   successButton.style.display = "block";
