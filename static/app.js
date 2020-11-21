@@ -100,10 +100,11 @@ successButton.addEventListener('click', function(){
   } else {
     var index = 1;
   }
-  scores[index]++;
-  domScore.innerText = 'ქულა: ' + scores[index];
-  addScore(scores[index]);
-
+  if (randomWords.length > 0){
+    scores[index]++;
+    domScore.innerText = 'ქულა: ' + scores[index];
+    addScore(scores[index]);
+  }
 });
 
 
