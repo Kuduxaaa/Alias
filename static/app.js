@@ -8,9 +8,8 @@ var startButton = document.querySelector('.start_btn');
 var domGroup = document.querySelector('.groupName');
 var doc = document.documentElement;
 var countdownstarted = false;
-var time = 60;
+var time = 7;
 var score;
-var current_score = 0;
 var scores = {0:0,1:0};
 var randomWords = [
   'ქურთუკი', 'ობობა', 'ნაცარი', 'ვირი', 'კედელი', 'ნარცისი', 'ღორი', 'ადამიანი', 'წინდა', 
@@ -55,37 +54,34 @@ function openFullscreen(){
   }
 }
 
-function countDownInterval(){
-  time--;
-  var myAudio = new Audio('./static/timeout.mp3');
-  domTime.innerText = time + 's';
-  if (time <= 5 && time >= 1){
-    myAudio.play();
-  } 
-  if (time === 0){
-    time = 60;
-    current_score = 0;
-    if (first_group === group_one){
-      first_group = group_two;
-      score = scores[1];
-    } else {
-      first_group = group_one;
-      score = scores[0];
-    }
-    
-    domGroup.innerText = 'ჯგუფი: ' + first_group;
-    domScore.innerText = 'ქულა; ' + score;
-    countdownstarted = false;
-    startButton.style.display = "block";
-    successButton.style.display = "none";
-    failedButton.style.display = "none";
-    clearInterval(countDown);
-  }
-}
-
 function startCountdown(){
   countdownstarted = true;
-  var countDown = setInterval(countDownInterval, 1000);
+  var countDown = setInterval(function(){
+    time--;
+    var myAudio = new Audio('./static/timeout.mp3');
+    domTime.innerText = time + 's';
+    if (time <= 5 && time >= 1){
+      myAudio.play();
+    } 
+    if (time === 0){
+      time = 7;
+      countdownstarted = false;
+      if (first_group === group_one){
+        first_group = group_two;
+        score = scores[1];
+      } else {
+        first_group = group_one;
+        score = scores[0];
+      }
+      
+      domGroup.innerText = 'ჯგუფი: ' + first_group;
+      domScore.innerText = 'ქულა; ' + score;
+      startButton.style.display = "block";
+      successButton.style.display = "none";
+      failedButton.style.display = "none";
+      clearInterval(countDown);
+    }
+  }, 1000);
 }
 
 function addScore(sc){
