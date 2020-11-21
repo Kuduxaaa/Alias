@@ -1,0 +1,77 @@
+@font-face{font-family:'BPG Boxo';src:url(../fonts/bpg-boxo-webfont.eot);src:url(../fonts/bpg-boxo-webfont.eot?#iefix) format('embedded-opentype'),url(../fonts/bpg-boxo-webfont.woff2) format('woff2'),url(../fonts/bpg-boxo-webfont.woff) format('woff'),url(../fonts/bpg-boxo-webfont.ttf) format('truetype'),url(../fonts/bpg-boxo-webfont.svg#bpg_boxoregular) format('svg')}
+
+* {
+  font-family: 'BPG Boxo', 'Arial', sans-serif;
+  box-sizing: border-box;
+  transition: .2s all;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+/*  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://i.pinimg.com/originals/09/4d/0f/094d0f4896860fd3d7cb2b06185ff8dd.gif);*/
+  background-color: #000000;
+  background-image: url('bg.gif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 300px 230px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.board {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #000;
+  padding: 30px 20px;
+  color: #fff;
+}
+
+.status {
+  text-shadow: #3b87ad 0 0 20px,#3b87ad 0 0 15px;
+  font-size: 27px;
+  text-align: center;
+  margin-top: 35px;
+}
+
+.groupName {
+  text-shadow: #3b87ad 0 0 20px,#3b87ad 0 0 15px;
+  font-size: 23px;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.buttons {
+  position: absolute;
+  width: min-content;
+  margin: 1px auto;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+.buttons > button {
+  width: 150px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  padding: 13px;
+  margin: 5px;
+  border: 2px solid #3b87ad;
+  background-color: #000;
+  box-shadow: 0px 0px 12px #3b87ad;
+  font-weight: 600;
+  color: #4faddb;
+}
+
+.buttons > button:hover {
+  background-color: #4faddb;
+  color: #000;
+}
+
+.success_btn,
+.failed_btn {
+  display: none;
+}
