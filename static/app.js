@@ -32,6 +32,14 @@ function back() {
   return 'hash_changed :D';
 }
 
+function renderWord(){
+  if (randomWords.length != 0){
+    var randomIndex = Math.floor(Math.random() * randomWords.length);
+    mStatus.innerText = randomWords[randomIndex];
+    randomWords.splice(randomIndex,1);
+  }
+}
+
 var group_one = prompt('მოუთითეთ პირველი ჯგუფის სახელი: ');
 var group_two = prompt('მიუთითეთ მეორე ჯგუფის სახელი');
 var first_group = group_one;
@@ -47,35 +55,37 @@ function openFullscreen(){
   }
 }
 
+function countDownInterval(){
+  time--;
+  var myAudio = new Audio('./static/timeout.mp3');
+  domTime.innerText = time + 's';
+  if (time <= 5 && time >= 1){
+    myAudio.play();
+  } 
+  if (time === 0){
+    time = 60;
+    current_score = 0;
+    if (first_group === group_one){
+      first_group = group_two;
+      score = scores[1];
+    } else {
+      first_group = group_one;
+      score = scores[0];
+    }
+    
+    domGroup.innerText = 'ჯგუფი: ' + first_group;
+    domScore.innerText = 'ქულა; ' + score;
+    countdownstarted = false;
+    startButton.style.display = "block";
+    successButton.style.display = "none";
+    failedButton.style.display = "none";
+    clearInterval(countDown);
+  }
+}
+
 function startCountdown(){
   countdownstarted = true;
-  var countDown = setInterval(function(){
-    time--;
-    var myAudio = new Audio('./static/timeout.mp3');
-    domTime.innerText = time + 's';
-    if (time <= 5 && time >= 1){
-      myAudio.play();
-    } 
-    if (time === 0){
-      time = 60;
-      current_score = 0;
-      if (first_group === group_one){
-        first_group = group_two;
-        score = scores[1];
-      } else {
-        first_group = group_one;
-        score = scores[0];
-      }
-      
-      domGroup.innerText = 'ჯგუფი: ' + first_group;
-      domScore.innerText = 'ქულა; ' + score;
-      countdownstarted = false;
-      startButton.style.display = "block";
-      successButton.style.display = "none";
-      failedButton.style.display = "none";
-      clearInterval(countDown);
-    }
-  }, 1000);
+  var countDown = setInterval(countDownInterval, 1000);
 }
 
 function addScore(sc){
@@ -119,12 +129,10 @@ failedButton.addEventListener('click', function(){
   new Audio('./static/click.mp3').play();
 });
 
+
+
 startButton.addEventListener('click', function(){
-  if (randomWords.length != 0){
-    var randomIndex = Math.floor(Math.random() * randomWords.length);
-    mStatus.innerText = randomWords[randomIndex];
-    randomWords.splice(randomIndex,1);
-  }
+  renderWord();
   openFullscreen();
   startButton.style.display = "none";
   successButton.style.display = "block";
